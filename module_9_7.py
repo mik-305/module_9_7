@@ -1,23 +1,25 @@
 def is_prime(func):
-    def wrapper(s1, s2, s3):
-        sum = s1 + s2 + s3
-        def IsPrime(sum):               # Определяем - простое или нет
+    def wrapper(*args, **kwargs):
+        result = func(*args, **kwargs)
+        def IsPrime(resul):               # Определяем - простое или нет
             j = 2
-            while sum % j != 0:
+            while resul % j != 0:
                 j += 1
-            return j == sum
+            return j == resul
 
-        if IsPrime(sum):
+        if IsPrime(result):
             print('Простое')
         else:
             print('Не является простым')
-        return sum
+        return result
     return wrapper
 
 @is_prime
-def sum_three():
-    pass
-    return
+def sum_three(*args):
+    sum = 0
+    for number in args:
+        sum += number
+    return sum
 
 result = sum_three(2, 3, 6)
 print(result)
